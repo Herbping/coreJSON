@@ -541,13 +541,13 @@ static bool skipString( const char * buf,
 
     i = *start;
 
-    if( ( i < max ) && ( buf[ i ] == '"' ) )
+    if( ( i < max ) && ( buf[ i ] == '"' ) ) 
     {
         i++;
 
         while( i < max )
         INVARIANT ( (*start <= i) && (i <= max) )
-        /* DECREASES ( max - i ) */
+        DECREASES ( max - i )
         {
             if( buf[ i ] == '"' )
             {
@@ -1114,7 +1114,7 @@ static JSONStatus_t skipCollection( const char * buf,
         (ret == JSONSuccess || ret == JSONPartial || ret == JSONIllegalDocument || ret == JSONMaxDepthExceeded ) &&
         (ret == JSONSuccess ==> i <= max)
     )
-    /* DECREASES ( max - i ) */
+    DECREASES ( max - i )
     {
         c = buf[ i ];
         i++;

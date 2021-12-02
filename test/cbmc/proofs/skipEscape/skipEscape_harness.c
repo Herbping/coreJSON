@@ -41,6 +41,9 @@ void harness()
     buf = malloc( max );
     __CPROVER_assume( buf != NULL );
 
+    start = __CPROVER_max_malloc_size;
+    /*assert( max > SIZE_MAX - 6);*/
+
     ret = skipEscape( buf, &start, max );
 
     __CPROVER_assert( isBool( ret ), "A bool value is returned." );
