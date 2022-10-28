@@ -16,6 +16,8 @@ PROJECT_SOURCES += $(PROOFDIR)/core_json.c
 
 CHECKFLAGS += --pointer-primitive-check
 
+CHECKFLAGS += --pointer-check
+
 include ../Makefile.common
 
 cleanclean: veryclean

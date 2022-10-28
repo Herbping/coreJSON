@@ -83,10 +83,13 @@ static void skipSpace( const char * buf,
 
     assert( ( buf != NULL ) && ( start != NULL ) && ( max > 0U ) );
 
+#pragma CPROVER check push
+#pragma CPROVER check disable "unsigned-overflow"
     for( i = *start; i < max; i++ )
-    INVARIANT ((*start <= i) && (i <= max))
+    INVARIANT (i <= max)
     DECREASES ( max - i )
     {
+#pragma CPROVER check pop
         if( !isspace_( buf[ i ] ) )
         {
             break;
@@ -604,10 +607,13 @@ static bool strnEq( const char * a,
 
     assert( ( a != NULL ) && ( b != NULL ) );
 
+#pragma CPROVER check push
+#pragma CPROVER check disable "unsigned-overflow"
     for( i = 0; i < n; i++ )
-    INVARIANT (0 <= i && i <= n)
+    INVARIANT (i <= n)
     DECREASES (n - i)
     {
+#pragma CPROVER check pop
         if( a[ i ] != b[ i ] )
         {
             break;
@@ -709,6 +715,8 @@ static bool skipDigits( const char * buf,
 
     saveStart = *start;
 
+#pragma CPROVER check push
+#pragma CPROVER check disable "unsigned-overflow"
     for( i = *start; i < max; i++ )
     INVARIANT (
         (*start <= i) && (i <= max) &&
@@ -716,6 +724,7 @@ static bool skipDigits( const char * buf,
     )
     DECREASES ( max - i )
     {
+#pragma CPROVER check pop
         if( !isdigit_( buf[ i ] ) )
         {
             break;
@@ -954,6 +963,7 @@ static void skipArrayScalars( const char * buf,
     i = *start;
 
     while( i < max )
+    INVARIANT (true)
     {
         if( skipAnyScalar( buf, &i, max ) != true )
         {
@@ -996,6 +1006,7 @@ static void skipObjectScalars( const char * buf,
     i = *start;
 
     while( i < max )
+    INVARIANT (true)
     {
         if( skipString( buf, &i, max ) != true )
         {
@@ -1092,6 +1103,7 @@ static JSONStatus_t skipCollection( const char * buf,
     i = *start;
 
     while( i < max )
+    INVARIANT (true)
     {
         c = buf[ i ];
         i++;
