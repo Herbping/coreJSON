@@ -8,6 +8,8 @@ CBMC_FLAG_UNWINDING_ASSERTIONS =
 
 APPLY_LOOP_CONTRACTS = 1
 
+CBMC_FLAG_UNWIND =
+
 include ../Makefile-json.common
 
 # Substitution command to pass to sed for patching core_json.c. The
