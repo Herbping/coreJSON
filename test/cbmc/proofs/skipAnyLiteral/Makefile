@@ -7,7 +7,7 @@ PROOF_UID=skipAnyLiteral
 CBMC_FLAG_UNWINDING_ASSERTIONS = 
 
 APPLY_LOOP_CONTRACTS = 1
-CBMC_FLAG_UNWIND
+CBMC_FLAG_UNWIND =
 
 # This value was experimentally chosen to provide 100% coverage
 # without tripping unwinding assertions and without exhausting memory.
